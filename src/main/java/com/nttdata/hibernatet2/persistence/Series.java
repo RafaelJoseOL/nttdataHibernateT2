@@ -44,10 +44,10 @@ public class Series extends AbstractEntity implements Serializable {
 	private int seriesNumberOfBooks;
 	
 	/** Escritor de la saga */
-	//private Writer writer;
+	private Writer writer;
 	
 	/** Libros de la saga */
-	//private List<Book> books;
+	private List<Book> booksList;
 
 	/**
 	 * @return the seriesId
@@ -115,38 +115,38 @@ public class Series extends AbstractEntity implements Serializable {
 		this.seriesNumberOfBooks = seriesNumberOfBooks;
 	}
 	
-//	/**
-//	 * @return the writer
-//	 */
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "WRITER_ID")
-//	public Writer getWriter() {
-//		return writer;
-//	}
-//
-//	/**
-//	 * @param writer
-//	 * writer to be set
-//	 */
-//	public void setSeriesWriter(Writer writer) {
-//		this.writer = writer;
-//	}
+	/**
+	 * @return the writer
+	 */
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "WRITER_ID")
+	public Writer getWriter() {
+		return writer;
+	}
+
+	/**
+	 * @param writer
+	 * writer to be set
+	 */
+	public void setWriter(Writer writer) {
+		this.writer = writer;
+	}
 	
-//	/**
-//	 * @return the booksList
-//	 */
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "series")
-//	public List<Book> getBooksList() {
-//		return books;
-//	}
-//
-//	/**
-//	 * @param books
-//	 * books to be set
-//	 */
-//	public void setPlayersList(List<Book> books) {
-//		this.books = books;
-//	}
+	/**
+	 * @return the booksList
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "series")
+	public List<Book> getBooksList() {
+		return booksList;
+	}
+
+	/**
+	 * @param books
+	 * books to be set
+	 */
+	public void setBooksList(List<Book> booksList) {
+		this.booksList = booksList;
+	}
 
 	@Transient
 	public Class<?> getClase() {

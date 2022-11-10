@@ -45,7 +45,7 @@ public class Writer extends AbstractEntity implements Serializable {
 	private String publisher;
 	
 	/** Sagas del escritor */
-	//private List<Series> seriesList;
+	private List<Series> seriesList;
 
 	/**
 	 * @return the writerId
@@ -129,21 +129,21 @@ public class Writer extends AbstractEntity implements Serializable {
 		this.publisher = publisher;
 	}
 	
-//	/**
-//	 * @return the seriesList
-//	 */
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, targetEntity=Series.class, mappedBy = "writer")
-//	public List<Series> getSeriesList() {
-//		return seriesList;
-//	}
-//
-//	/**
-//	 * @param seriesList 
-//	 * seriesList to set
-//	 */
-//	public void setSeriesList(List<Series> seriesList) {
-//		this.seriesList = seriesList;
-//	}
+	/**
+	 * @return the seriesList
+	 */
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "writer")
+	public List<Series> getSeriesList() {
+		return seriesList;
+	}
+
+	/**
+	 * @param seriesList 
+	 * seriesList to set
+	 */
+	public void setSeriesList(List<Series> seriesList) {
+		this.seriesList = seriesList;
+	}
 
 	@Transient
 	public Class<?> getClase() {
@@ -160,5 +160,11 @@ public class Writer extends AbstractEntity implements Serializable {
 	@Transient
 	public void setId(Long id) {
 		this.writerId = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Writer [writerId=" + writerId + ", writerName=" + writerName + ", writerLastName=" + writerLastName
+				+ ", website=" + website + ", publisher=" + publisher + ", seriesList=" + seriesList + "]";
 	}
 }

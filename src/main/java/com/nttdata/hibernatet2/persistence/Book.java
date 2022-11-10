@@ -43,7 +43,7 @@ public class Book extends AbstractEntity implements Serializable{
 	private Double price;
 	
 	/** Saga del libro */
-	//private Series series;
+	private Series series;
 	
 	/**
 	 * @return the bookId
@@ -112,22 +112,22 @@ public class Book extends AbstractEntity implements Serializable{
 		this.price = price;
 	}
 	
-//	/**
-//	 * @return the team
-//	 */
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "SERIES_ID")
-//	public Series getSeries() {
-//		return series;
-//	}
-//
-//	/**
-//	 * @param series
-//	 * series to be set
-//	 */
-//	public void setSeries(Series series) {
-//		this.series = series;
-//	}
+	/**
+	 * @return the team
+	 */
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "SERIES_ID")
+	public Series getSeries() {
+		return series;
+	}
+
+	/**
+	 * @param series
+	 * series to be set
+	 */
+	public void setSeries(Series series) {
+		this.series = series;
+	}
 
 	@Override
 	@Transient
@@ -140,4 +140,10 @@ public class Book extends AbstractEntity implements Serializable{
 	public void setId(Long id) {
 		this.bookId = id;		
 	}	
+
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", bookName=" + bookName + ", releaseDate=" + releaseDate + ", price=" + price
+				+ ", series=" + series + "]";
+	}
 }

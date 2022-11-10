@@ -84,7 +84,7 @@ public class NTTDataMain {
 		series1.setSeriesName("Mistborn");
 		series1.setSeriesGenre("Action");
 		series1.setNumberOfBooks(7);
-		//series1.setSeriesWriter(writer1);
+		series1.setWriter(writer1);
 		series1.setUpdatedUser(updatedUser);
 		series1.setUpdatedDate(updatedDate);
 
@@ -92,7 +92,7 @@ public class NTTDataMain {
 		series2.setSeriesName("Stormlight Archive");
 		series2.setSeriesGenre("Epic Fantasy");
 		series2.setNumberOfBooks(5);
-		//series2.setSeriesWriter(writer1);
+		series2.setWriter(writer1);
 		series2.setUpdatedUser(updatedUser);
 		series2.setUpdatedDate(updatedDate);
 
@@ -110,7 +110,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book1.setBookPrice(12.30);
-		//book1.setSeries(series1);
+		book1.setSeries(series1);
 		book1.setUpdatedUser(updatedUser);
 		book1.setUpdatedDate(updatedDate);
 
@@ -123,6 +123,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book2.setBookPrice(12.50);
+		book2.setSeries(series1);
 		book2.setUpdatedUser(updatedUser);
 		book2.setUpdatedDate(updatedDate);
 
@@ -135,6 +136,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book3.setBookPrice(13.50);
+		book3.setSeries(series1);
 		book3.setUpdatedUser(updatedUser);
 		book3.setUpdatedDate(updatedDate);
 
@@ -147,6 +149,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book4.setBookPrice(12.80);
+		book4.setSeries(series1);
 		book4.setUpdatedUser(updatedUser);
 		book4.setUpdatedDate(updatedDate);
 
@@ -159,6 +162,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book5.setBookPrice(13.90);
+		book5.setSeries(series1);
 		book5.setUpdatedUser(updatedUser);
 		book5.setUpdatedDate(updatedDate);
 
@@ -171,6 +175,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book6.setBookPrice(13.90);
+		book6.setSeries(series1);
 		book6.setUpdatedUser(updatedUser);
 		book6.setUpdatedDate(updatedDate);
 
@@ -183,6 +188,7 @@ public class NTTDataMain {
 			e.printStackTrace();
 		}
 		book7.setBookPrice(15.50);
+		book7.setSeries(series1);
 		book7.setUpdatedUser(updatedUser);
 		book7.setUpdatedDate(updatedDate);
 
@@ -201,30 +207,30 @@ public class NTTDataMain {
 		bookService.insertNewBook(book7);
 
 		// Consultas
-		List<Writer> writersList = writerService.searchByName("ob");
-		for (final Writer writer : writersList) {
-			writerInfo(writer);
-		}
-
-		List<Series> seriesList = seriesService.searchAll();
-		for (final Series series : seriesList) {
-			seriesInfo(series);
-		}
-
-		List<Series> seriesListMoreThan5Bbooks = seriesService.searchByMoreBooks(5);
-		for (final Series series : seriesListMoreThan5Bbooks) {
-			seriesInfo(series);
-		}
+//		List<Writer> writersList = writerService.searchByName("ob");
+//		for (final Writer writer : writersList) {
+//			writerInfo(writer);
+//		}
+//
+//		List<Series> seriesList = seriesService.searchAll();
+//		for (final Series series : seriesList) {
+//			seriesInfo(series);
+//		}
+//
+//		List<Series> seriesListMoreThan5Bbooks = seriesService.searchByMoreBooks(5);
+//		for (final Series series : seriesListMoreThan5Bbooks) {
+//			seriesInfo(series);
+//		}
 
 		List<Series> seriesMist = seriesService.searchByName("Mist");
 		for (final Series series : seriesMist) {
 			seriesInfo(series);
 		}
 
-		List<Book> bookList = bookService.searchAll();
-		for (final Book book : bookList) {
-			bookInfo(book);
-		}
+//		List<Book> bookList = bookService.searchAll();
+//		for (final Book book : bookList) {
+//			bookInfo(book);
+//		}
 
 		// Cierre de sesión.
 		session.close();
@@ -241,11 +247,12 @@ public class NTTDataMain {
 
 	private static void seriesInfo(final Series series) {
 		System.out.println("Nombre: " + series.getSeriesName() + "\nGénero: " + series.getSeriesGenre()
-				+ "\nNúmero de libros: " + series.getNumberOfBooks()/* + "\nEscritor: " + series.getSeriesWriter()*/);
+				+ "\nNúmero de libros: " + series.getNumberOfBooks() + "\nEscritor: "
+				+ series.getWriter().getWriterName() + " " + series.getWriter().getWriterLastName());
 	}
 
 	private static void bookInfo(final Book book) {
 		System.out.println("Titulo: " + book.getBookName() + "\nFecha: " + book.getReleaseDate() + "\nPrecio: "
-				+ book.getBookPrice());
+				+ book.getBookPrice() + "\nSaga: " + book.getSeries().getSeriesName());
 	}
 }
