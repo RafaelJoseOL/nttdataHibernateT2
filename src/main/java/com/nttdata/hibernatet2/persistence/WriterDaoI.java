@@ -36,4 +36,21 @@ public interface WriterDaoI extends CommonDaoI<Writer> {
 	 * @return List<Writer>
 	 */
 	public List<Writer> searchByPublisher(final String publisher);
+
+	/**
+	 * Obtiene los escritores por nombre y cantidad de sagas
+	 * 
+	 * @param writerName
+	 * @param numberOfBooks
+	 * @return
+	 */
+	List<Writer> searchByNameAndNumberOfBooks(String writerName, Integer numberOfBooks);
+
+	/**
+	 * Obtiene los escritores que tienen libros en la tienda indicada.
+	 * 
+	 * @param storeName
+	 * @return
+	 */
+	List<Writer> searchByBooksOnStore(String storeName);
 }

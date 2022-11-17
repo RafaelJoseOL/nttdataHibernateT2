@@ -144,4 +144,18 @@ public class WriterManagementServiceImpl implements WriterManagementServiceI {
 		}
 		return writersList;
 	}
+
+	@Override
+	public List<Writer> searchByNameAndNumberOfBooks(String writerName, Integer numberOfBooks) {
+
+		// Obtención del escritor por nombre completo.
+		return writerDao.searchByNameAndNumberOfBooks(writerName, numberOfBooks);
+	}
+
+	@Override
+	public List<Writer> searchByBooksOnStore(String storeName) {
+		
+		// Obtención del escritor que tiene libros en una tienda.
+		return writerDao.searchByBooksOnStore(storeName);
+	}
 }

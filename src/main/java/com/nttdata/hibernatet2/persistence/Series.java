@@ -1,6 +1,5 @@
 package com.nttdata.hibernatet2.persistence;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -26,7 +26,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "NTTDATA_HEX_SERIES")
-public class Series extends AbstractEntity implements Serializable {
+public class Series extends AbstractEntity {
 	
 	/** Serial Version */
 	private static final long serialVersionUID = 1L;
@@ -41,7 +41,7 @@ public class Series extends AbstractEntity implements Serializable {
 	private String seriesGenre;
 
 	/** Numero de libros */
-	private int seriesNumberOfBooks;
+	private Integer seriesNumberOfBooks;
 	
 	/** Escritor de la saga */
 	private Writer writer;
@@ -53,8 +53,9 @@ public class Series extends AbstractEntity implements Serializable {
 	 * @return the seriesId
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "SERIES_ID")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "series_id_Sequence")
+	@SequenceGenerator(name = "series_id_Sequence", sequenceName = "SERIES_ID_SEQ")
 	public Long getSeriesId() {
 		return seriesId;
 	}
@@ -103,7 +104,7 @@ public class Series extends AbstractEntity implements Serializable {
 	 * @return the seriesNumberOfBooks
 	 */
 	@Column(name = "NUMBER_OF_BOOKS", nullable = false)
-	public int getNumberOfBooks() {
+	public Integer getNumberOfBooks() {
 		return seriesNumberOfBooks;
 	}
 
@@ -111,7 +112,7 @@ public class Series extends AbstractEntity implements Serializable {
 	 * @param seriesNumberOfBooks 
 	 * seriesNumberOfBooks to be set
 	 */
-	public void setNumberOfBooks(int seriesNumberOfBooks) {
+	public void setNumberOfBooks(Integer seriesNumberOfBooks) {
 		this.seriesNumberOfBooks = seriesNumberOfBooks;
 	}
 	
@@ -136,6 +137,7 @@ public class Series extends AbstractEntity implements Serializable {
 	 * @return the booksList
 	 */
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "series")
+	@Column(name = "BOOKS_LIST")
 	public List<Book> getBooksList() {
 		return booksList;
 	}
@@ -154,14 +156,18 @@ public class Series extends AbstractEntity implements Serializable {
 	}
 
 	@Override
-	@Transient
 	public Long getId() {
 		return this.seriesId;
 	}
 
 	@Override
-	@Transient
 	public void setId(Long id) {
 		this.seriesId = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Series [seriesId=" + seriesId + ", seriesName=" + seriesName + ", seriesGenre=" + seriesGenre
+				+ ", seriesNumberOfBooks=" + seriesNumberOfBooks;
 	}
 }

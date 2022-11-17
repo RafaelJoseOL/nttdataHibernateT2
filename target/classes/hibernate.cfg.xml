@@ -23,6 +23,7 @@
 		<mapping class="com.nttdata.hibernatet2.persistence.Writer" />
 		<mapping class="com.nttdata.hibernatet2.persistence.Series" />
 		<mapping class="com.nttdata.hibernatet2.persistence.Book" />
+		<mapping class="com.nttdata.hibernatet2.persistence.Store" />
 		
 	</session-factory>
 </hibernate-configuration>

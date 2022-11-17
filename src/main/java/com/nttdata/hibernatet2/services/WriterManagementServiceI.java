@@ -26,7 +26,7 @@ public interface WriterManagementServiceI {
 	 * 
 	 * @param writerToDelete
 	 */
-	public void updateWriter(final Writer writerToDelete);
+	public void updateWriter(final Writer writerToUpdate);
 
 	/**
 	 * Elimina un escritor ya existente.
@@ -73,6 +73,22 @@ public interface WriterManagementServiceI {
 	 * @return List<Writer>
 	 */
 	public List<Writer> searchByPublisher(final String publisher);
+	
+	/**
+	 * Obtiene un escritor por su editorial en España.
+	 * 
+	 * @param name
+	 * @return List<Writer>
+	 */
+	public List<Writer> searchByNameAndNumberOfBooks(String writerName, Integer numberOfBooks);
+	
+	/**
+	 * Obtiene los escritores que tienen libros en la tienda indicada.
+	 * 
+	 * @param storeName
+	 * @return
+	 */
+	List<Writer> searchByBooksOnStore(String storeName);
 
 	/**
 	 * Obtiene todos los escritores existentes.

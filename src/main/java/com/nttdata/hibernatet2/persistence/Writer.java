@@ -1,6 +1,5 @@
 package com.nttdata.hibernatet2.persistence;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -24,7 +24,7 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "NTTDATA_HEX_WRITER")
-public class Writer extends AbstractEntity implements Serializable {
+public class Writer extends AbstractEntity {
 	
 	/** Serial Version */
 	private static final long serialVersionUID = 1L;
@@ -51,8 +51,9 @@ public class Writer extends AbstractEntity implements Serializable {
 	 * @return the writerId
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "WRITER_ID")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "writer_id_Sequence")
+	@SequenceGenerator(name = "writer_id_Sequence", sequenceName = "SEQ_NTTDATA_HEX_WRITER")
 	public Long getWriterId() {
 		return writerId;
 	}
@@ -151,13 +152,11 @@ public class Writer extends AbstractEntity implements Serializable {
 	}
 
 	@Override
-	@Transient
 	public Long getId() {
 		return this.writerId;
 	}
 
 	@Override
-	@Transient
 	public void setId(Long id) {
 		this.writerId = id;
 	}
@@ -165,6 +164,6 @@ public class Writer extends AbstractEntity implements Serializable {
 	@Override
 	public String toString() {
 		return "Writer [writerId=" + writerId + ", writerName=" + writerName + ", writerLastName=" + writerLastName
-				+ ", website=" + website + ", publisher=" + publisher + ", seriesList=" + seriesList + "]";
+				+ ", website=" + website + ", publisher=" + publisher;
 	}
 }

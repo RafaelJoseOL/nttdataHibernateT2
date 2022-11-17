@@ -132,7 +132,7 @@ public class BookManagementServiceImpl implements BookManagementServiceI {
 	@Override
 	public List<Book> searchAll() {
 
-		// Obtención y devolución de sagas
+		// Obtención y devolución de libros
 		return bookDao.searchAll();
 	}
 }
