@@ -1,6 +1,6 @@
 package com.nttdata.hibernatet2.persistence;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -39,7 +39,7 @@ public class Book extends AbstractEntity {
 	private String bookName;
 
 	/** Fecha de lanzamiento */
-	private Date releaseDate;
+	private LocalDate releaseDate;
 
 	/** Precio */
 	private Double price;
@@ -87,15 +87,15 @@ public class Book extends AbstractEntity {
 	 * @return the releaseDate
 	 */
 	@Column(name = "RELEASE_DATE", nullable = false)
-	public Date getReleaseDate() {
+	public LocalDate getReleaseDate() {
 		return releaseDate;
 	}
 
 	/**
-	 * @param releaseDate releaseDate to be set
+	 * @param localDate releaseDate to be set
 	 */
-	public void setReleaseDate(Date releaseDate) {
-		this.releaseDate = releaseDate;
+	public void setReleaseDate(LocalDate localDate) {
+		this.releaseDate = localDate;
 	}
 
 	/**

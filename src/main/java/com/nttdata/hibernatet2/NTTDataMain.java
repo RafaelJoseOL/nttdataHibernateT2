@@ -3,6 +3,7 @@ package com.nttdata.hibernatet2;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -398,15 +399,15 @@ public class NTTDataMain {
 			Date date) {
 
 		// Creacion de formato para las fechas
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-
+//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");		
+//		try {
+//			book.setReleaseDate(formatDate(formatter, releaseDate));	
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}	
+		
 		book.setBookName(name);
-		try {
-			book.setReleaseDate(formatDate(formatter, releaseDate));
-
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		book.setReleaseDate(LocalDate.parse(releaseDate));
 		book.setBookPrice(price);
 		book.setSeries(series);
 		book.setUpdatedUser(user);
