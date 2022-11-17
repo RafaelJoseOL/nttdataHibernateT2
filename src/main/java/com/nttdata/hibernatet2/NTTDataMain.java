@@ -396,16 +396,7 @@ public class NTTDataMain {
 	 *                    Metodo para crear libros.
 	 */
 	private static void createBook(Book book, String name, String releaseDate, double price, Series series, String user,
-			Date date) {
-
-		// Creacion de formato para las fechas
-//		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");		
-//		try {
-//			book.setReleaseDate(formatDate(formatter, releaseDate));	
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}	
-		
+			Date date) {		
 		book.setBookName(name);
 		book.setReleaseDate(LocalDate.parse(releaseDate));
 		book.setBookPrice(price);
@@ -436,19 +427,6 @@ public class NTTDataMain {
 		store.setBooksList(books);
 		store.setUpdatedUser(user);
 		store.setUpdatedDate(date);
-	}
-
-	/**
-	 * 
-	 * @param formatter
-	 * @param dateString
-	 * @return
-	 * @throws ParseException
-	 * 
-	 *                        Metodo para dar formato a fechas.
-	 */
-	private static Date formatDate(SimpleDateFormat formatter, String dateString) throws ParseException {
-		return formatter.parse(dateString);
 	}
 
 	/**
